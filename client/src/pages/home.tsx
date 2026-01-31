@@ -16,8 +16,9 @@ import {
   Workflow,
 } from "lucide-react";
 
-import logoMark from "@/assets/images/jv-mark.png";
+import logoFull from "@assets/justvideos_logo-_1769848465350.png";
 import heroMesh from "@/assets/images/hero-mesh.png";
+
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -47,6 +48,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { VeeraAgent } from "@/components/veera";
 
 function Container({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto w-full max-w-6xl px-4 md:px-6">{children}</div>;
@@ -57,27 +59,17 @@ function TopNav() {
     <div className="sticky top-0 z-50 border-b bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/55">
       <Container>
         <div className="flex h-16 items-center justify-between gap-3">
-          <Link href="/">
-            <a
-              className="group inline-flex items-center gap-2"
-              data-testid="link-home"
-              aria-label="JustVideos.cloud"
-            >
-              <div className="relative grid size-9 place-items-center overflow-hidden rounded-xl border bg-card shadow-sm">
-                <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-primary/25 via-accent/20 to-transparent blur" />
-                <img
-                  src={logoMark}
-                  alt=""
-                  className="relative h-7 w-7 object-contain"
-                  data-testid="img-logo-mark"
-                />
-              </div>
-              <div className="leading-tight">
-                <div className="font-serif text-[15px] font-semibold tracking-tight">JustVideos</div>
-                <div className="text-xs text-muted-foreground">video • ai • workflows</div>
-              </div>
-            </a>
-          </Link>
+          <a href="/" className="group inline-flex items-center gap-2" data-testid="link-home" aria-label="JustVideos.cloud">
+            <div className="relative grid h-9 w-[148px] place-items-center overflow-hidden rounded-xl border bg-card shadow-sm">
+              <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-primary/25 via-accent/20 to-transparent blur" />
+              <img
+                src={logoFull}
+                alt="JustVideos"
+                className="relative h-7 w-auto object-contain"
+                data-testid="img-logo-full"
+              />
+            </div>
+          </a>
 
           <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
             <a
@@ -118,14 +110,14 @@ function TopNav() {
             >
               Submit brief
             </a>
-            <Button size="sm" className="rounded-xl" data-testid="button-book-call" asChild>
-              <Link href="/payment">
-                <a>
+            <Link href="/payment">
+              <a data-testid="button-book-call" aria-label="Book a call">
+                <Button size="sm" className="rounded-xl w-full">
                   Book a call
                   <ChevronRight className="ml-1 size-4" aria-hidden="true" />
-                </a>
-              </Link>
-            </Button>
+                </Button>
+              </a>
+            </Link>
           </div>
         </div>
       </Container>
@@ -1240,6 +1232,7 @@ export default function HomePage() {
       <FAQSection />
       <ContactSection />
       <Footer />
+      <VeeraAgent />
       <WhatsAppSticky />
     </div>
   );
