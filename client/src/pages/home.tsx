@@ -110,14 +110,12 @@ function TopNav() {
             >
               Submit brief
             </a>
-            <Link href="/payment">
-              <a data-testid="button-book-call" aria-label="Book a call">
-                <Button size="sm" className="rounded-xl w-full">
-                  Book a call
-                  <ChevronRight className="ml-1 size-4" aria-hidden="true" />
-                </Button>
-              </a>
-            </Link>
+            <a href="/payment" data-testid="button-book-call" aria-label="Book a call">
+              <Button size="sm" className="rounded-xl w-full">
+                Book a call
+                <ChevronRight className="ml-1 size-4" aria-hidden="true" />
+              </Button>
+            </a>
           </div>
         </div>
       </Container>
@@ -1181,22 +1179,20 @@ function Footer() {
             © {new Date().getFullYear()} JustVideos.cloud
           </div>
           <div className="flex items-center gap-4 text-sm">
-            <Link href="/privacy">
-              <a
-                className="text-muted-foreground underline-offset-4 hover:underline"
-                data-testid="link-privacy"
-              >
-                Privacy
-              </a>
-            </Link>
-            <Link href="/terms">
-              <a
-                className="text-muted-foreground underline-offset-4 hover:underline"
-                data-testid="link-terms"
-              >
-                Terms
-              </a>
-            </Link>
+            <a
+              href="/privacy"
+              className="text-muted-foreground underline-offset-4 hover:underline"
+              data-testid="link-privacy"
+            >
+              Privacy
+            </a>
+            <a
+              href="/terms"
+              className="text-muted-foreground underline-offset-4 hover:underline"
+              data-testid="link-terms"
+            >
+              Terms
+            </a>
           </div>
         </div>
       </Container>

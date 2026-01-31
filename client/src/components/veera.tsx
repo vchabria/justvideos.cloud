@@ -44,25 +44,81 @@ const QUICK_ACTIONS: Array<{ label: string; intent: VeeraIntent; utterance: stri
   },
 ];
 
-function pickIndianVoice(voices: SpeechSynthesisVoice[]) {
-  const prefer = voices
-    .filter((v) => (v.lang || "").toLowerCase().includes("en"))
-    .sort((a, b) => {
-      const aScore =
-        (/(india|en-in)/i.test(a.lang) ? 5 : 0) +
-        (/(female|woman|zira|susan|neural)/i.test(a.name) ? 2 : 0) +
-        (/google/i.test(a.name) ? 1 : 0);
-      const bScore =
-        (/(india|en-in)/i.test(b.lang) ? 5 : 0) +
-        (/(female|woman|zira|susan|neural)/i.test(b.name) ? 2 : 0) +
-        (/google/i.test(b.name) ? 1 : 0);
-      return bScore - aScore;
-    });
-  return prefer[0] || voices[0] || null;
+function pickIndianFemaleVoice(voices: SpeechSynthesisVoice[]) {
+  const en = voices.filter((v) => (v.lang || "").toLowerCase().includes("en"));
+
+  const scored = en
+    .map((v) => {
+      const lang = (v.lang || "").toLowerCase();
+      const name = (v.name || "").toLowerCase();
+
+      const femaleHints = [
+        "female",
+        "woman",
+        "veera",
+        "shruti",
+        "kavya",
+        "priya",
+        "zira",
+        "susan",
+        "neural",
+      ];
+
+      const score =
+        (/(en-in|india)/i.test(lang) ? 8 : 0) +
+        (femaleHints.some((h) => name.includes(h)) ? 4 : 0) +
+        (/google/i.test(name) ? 1 : 0) +
+        (/microsoft/i.test(name) ? 1 : 0);
+
+      return { v, score };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  return scored[0]?.v || en[0] || voices[0] || null;
 }
 
-function veeraReply(userText: string): { title: string; reply: string; cta?: { label: string; href: string } } {
-  const t = userText.toLowerCase();
+type VeeraReply = {
+  title: string;
+  reply: string;
+  cta?: { label: string; href: string };
+};
+
+type GuardrailReason = "medical" | "legal" | "financial" | "harm" | "unknown";
+
+function guardrailCheck(text: string): GuardrailReason | null {
+  const t = text.toLowerCase();
+  if (/(diagnos|prescription|medicine|treat|therapy|symptom|doctor)/i.test(t)) return "medical";
+  if (/(legal|law|lawsuit|contract advice|court|compliance advice)/i.test(t)) return "legal";
+  if (/(investment|stocks|trading|crypto|tax advice|financial advice|loan)/i.test(t)) return "financial";
+  if (/(weapon|explosive|harm|suicide|kill|self-harm)/i.test(t)) return "harm";
+  return null;
+}
+
+function safeFallback(): VeeraReply {
+  return {
+    title: "Next step",
+    reply:
+      "I want to make sure I guide you correctly. Please share a few details in the brief form (goal, timeline, language needs, and approval stakeholders), and our team will respond quickly.",
+    cta: { label: "Fill the brief form", href: "#contact" },
+  };
+}
+
+function veeraReply(userText: string): VeeraReply {
+  const t = userText.toLowerCase().trim();
+
+  const gr = guardrailCheck(t);
+  if (gr) {
+    return {
+      title: "Guardrails",
+      reply:
+        "I can’t help with that request. For anything related to sensitive advice, please share your business objective in the brief form and our team will follow up.",
+      cta: { label: "Fill the brief form", href: "#contact" },
+    };
+  }
+
+  // Website guardrails: keep to JustVideos offerings.
+  const looksLikeRandom = t.length < 3;
+  if (looksLikeRandom) return safeFallback();
 
   if (t.includes("book") || t.includes("call") || t.includes("schedule")) {
     return {
@@ -77,7 +133,7 @@ function veeraReply(userText: string): { title: string; reply: string; cta?: { l
     return {
       title: "Agentic workflows",
       reply:
-        "We map your current process (lead capture → follow-up → approvals → versions → publishing), then we automate the handoffs and add governance (review cycles, sign-offs, audit-friendly trail). Share your tools (WhatsApp/email/CRM/CMS) and we’ll propose a rollout plan.",
+        "We map your process (lead capture → follow-up → approvals → versions → publishing), then automate handoffs with clear governance. Tell me your tools (WhatsApp/email/CRM/CMS) and whether you need approvals/versioning.",
       cta: { label: "Submit a brief", href: "#contact" },
     };
   }
@@ -86,8 +142,8 @@ function veeraReply(userText: string): { title: string; reply: string; cta?: { l
     return {
       title: "Voice agents",
       reply:
-        "A voice agent can qualify leads, answer FAQs, route to the right team, and follow up—while keeping strict guardrails. For a production-ready voice agent, we’ll need an upgrade so your API keys stay secure and conversations can be logged safely.",
-      cta: { label: "Request setup", href: "#contact" },
+        "Veera can greet visitors, answer service questions, qualify leads, and route to the right next step. For a production-ready AI voice agent with logging and secure keys, we’ll need a full app upgrade. Meanwhile, submit a brief and we’ll propose the setup.",
+      cta: { label: "Request Veera setup", href: "#contact" },
     };
   }
 
@@ -95,15 +151,35 @@ function veeraReply(userText: string): { title: string; reply: string; cta?: { l
     return {
       title: "Pricing",
       reply:
-        "Pick a tier based on volume and governance: Starter for one-offs, Scale for recurring monthly output, Enterprise for SLA + approvals + localization. If you tell me your industry and timeline, I’ll recommend the best fit.",
+        "Starter is best for one-off deliverables, Scale is for recurring monthly output, and Enterprise is for SLA + approvals + localization. What’s your industry and deadline?",
       cta: { label: "See packages", href: "#packages" },
     };
   }
+
+  // If the question doesn’t match our site intents, ask them to fill the brief.
+  const supportedTopics = [
+    "video",
+    "production",
+    "ai video",
+    "workflow",
+    "automation",
+    "voice agent",
+    "packages",
+    "pricing",
+    "localization",
+    "dubbing",
+    "training",
+    "safety",
+  ];
+
+  const matches = supportedTopics.some((k) => t.includes(k.replace(" ", "")) || t.includes(k));
+  if (!matches) return safeFallback();
 
   return {
     title: "Quick help",
     reply:
       "Tell me what you’re trying to achieve (video, AI video, workflow automation, or a voice agent) and your timeline. I’ll guide you to the best next step.",
+    cta: { label: "Fill the brief form", href: "#contact" },
   };
 }
 
@@ -131,7 +207,7 @@ export function VeeraAgent() {
       if (!hasSpeech) return;
       const voices = window.speechSynthesis.getVoices();
       if (voices && voices.length) {
-        voiceRef.current = pickIndianVoice(voices);
+        voiceRef.current = pickIndianFemaleVoice(voices);
       }
     };
 
@@ -177,13 +253,19 @@ export function VeeraAgent() {
     return (value: string) => {
       if (muted) return;
       if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(value);
-      u.rate = 1.0;
-      u.pitch = 1.08;
-      u.volume = 1.0;
+
+      // Voice + character: Indian female voice preference (browser-provided)
       u.lang = "en-IN";
       if (voiceRef.current) u.voice = voiceRef.current;
+
+      // Veera tone: warm, confident, helpful (not overly chirpy)
+      u.rate = 0.98;
+      u.pitch = 1.02;
+      u.volume = 1.0;
+
       window.speechSynthesis.speak(u);
     };
   }, [muted]);
@@ -239,7 +321,7 @@ export function VeeraAgent() {
           Voice\n        </Badge>
       </button>
 
-      {open ? (
+          {open ? (
         <div
           className="fixed bottom-5 left-5 z-50 w-[min(420px,calc(100vw-40px))]"
           data-testid="panel-veera"
