@@ -16,6 +16,9 @@ import {
   Workflow,
 } from "lucide-react";
 
+import logoMark from "@/assets/images/jv-mark.png";
+import heroMesh from "@/assets/images/hero-mesh.png";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -60,9 +63,14 @@ function TopNav() {
               data-testid="link-home"
               aria-label="JustVideos.cloud"
             >
-              <div className="relative grid size-9 place-items-center rounded-xl border bg-card shadow-sm">
+              <div className="relative grid size-9 place-items-center overflow-hidden rounded-xl border bg-card shadow-sm">
                 <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-primary/25 via-accent/20 to-transparent blur" />
-                <div className="relative text-sm font-semibold tracking-tight">JV</div>
+                <img
+                  src={logoMark}
+                  alt=""
+                  className="relative h-7 w-7 object-contain"
+                  data-testid="img-logo-mark"
+                />
               </div>
               <div className="leading-tight">
                 <div className="font-serif text-[15px] font-semibold tracking-tight">JustVideos</div>
@@ -110,62 +118,14 @@ function TopNav() {
             >
               Submit brief
             </a>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  size="sm"
-                  className="rounded-xl"
-                  data-testid="button-book-call"
-                >
+            <Button size="sm" className="rounded-xl" data-testid="button-book-call" asChild>
+              <Link href="/payment">
+                <a>
                   Book a call
                   <ChevronRight className="ml-1 size-4" aria-hidden="true" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[720px]">
-                <DialogHeader>
-                  <DialogTitle className="font-serif">Book a call</DialogTitle>
-                </DialogHeader>
-                <div className="grid gap-4 md:grid-cols-[1.2fr_0.8fr]">
-                  <div className="rounded-xl border bg-card p-4">
-                    <div
-                      className="aspect-video w-full rounded-lg border bg-muted/40"
-                      data-testid="embed-calendar"
-                    />
-                    <div className="mt-3 text-sm text-muted-foreground">
-                      Drop in your preferred time. We’ll confirm within 15 minutes.
-                    </div>
-                  </div>
-                  <div className="rounded-xl border bg-card p-4">
-                    <div className="text-sm font-medium" data-testid="text-call-fast">
-                      What we’ll cover
-                    </div>
-                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                      <li className="flex gap-2">
-                        <BadgeCheck className="mt-0.5 size-4 text-primary" aria-hidden="true" />
-                        Timeline, scope, approvals
-                      </li>
-                      <li className="flex gap-2">
-                        <BadgeCheck className="mt-0.5 size-4 text-primary" aria-hidden="true" />
-                        Best-fit package vs custom
-                      </li>
-                      <li className="flex gap-2">
-                        <BadgeCheck className="mt-0.5 size-4 text-primary" aria-hidden="true" />
-                        Workflow + governance options
-                      </li>
-                    </ul>
-                    <Separator className="my-4" />
-                    <a
-                      href="#contact"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                      data-testid="link-jump-contact"
-                    >
-                      Or submit a brief
-                      <ArrowRight className="size-4" aria-hidden="true" />
-                    </a>
-                  </div>
-                </div>
-              </DialogContent>
-            </Dialog>
+                </a>
+              </Link>
+            </Button>
           </div>
         </div>
       </Container>
@@ -188,6 +148,14 @@ function Pill({ icon, label }: { icon: React.ReactNode; label: string }) {
 function Hero() {
   return (
     <section className="gradient-hero">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[520px] overflow-hidden" aria-hidden="true">
+        <img
+          src={heroMesh}
+          alt=""
+          className="h-full w-full object-cover opacity-40"
+          data-testid="img-hero-mesh"
+        />
+      </div>
       <Container>
         <div className="relative grid gap-10 py-14 md:grid-cols-[1.1fr_0.9fr] md:py-20">
           <motion.div
@@ -325,7 +293,7 @@ function Hero() {
                       Brands served
                     </div>
                     <div className="mt-1 text-sm font-medium" data-testid="text-proof-1">
-                      L&T • ITC • Tata Steel
+                      L&T • Tata Steel • Emami • GRSE • Haldia Petrochemicals • ITC
                     </div>
                   </div>
                   <div className="rounded-xl border bg-card p-3">
@@ -333,7 +301,7 @@ function Hero() {
                       Use cases
                     </div>
                     <div className="mt-1 text-sm font-medium" data-testid="text-proof-2">
-                      Safety • Product • Training
+                      Safety • Training • Product • Brand • Corporate • Explainers
                     </div>
                   </div>
                 </div>
@@ -638,12 +606,20 @@ function WorkflowsSection() {
 const LOGOS = [
   "L&T",
   "Tata Steel",
-  "ITC",
   "Emami",
   "Haldia Petrochemicals",
   "GRSE",
-  "Infrastructure",
-  "Manufacturing",
+  "Tata",
+  "Aditya Birla Group",
+  "Reliance",
+  "IndianOil",
+  "GAIL",
+  "JSW",
+  "Hindalco",
+  "Marico",
+  "Britannia",
+  "Nestlé",
+  "ITC",
 ];
 
 function ProofSection() {
@@ -936,6 +912,7 @@ function FAQSection() {
 function ContactSection() {
   const { toast } = useToast();
   const [serviceType, setServiceType] = useState<string>("video");
+  const [otherService, setOtherService] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [company, setCompany] = useState<string>("");
@@ -982,6 +959,9 @@ function ContactSection() {
                         <SelectItem value="apps" data-testid="select-item-apps">
                           Website / app
                         </SelectItem>
+                        <SelectItem value="other" data-testid="select-item-other">
+                          Other (tell us)
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1016,6 +996,22 @@ function ContactSection() {
                     </div>
                   </div>
 
+                  {serviceType === "other" ? (
+                    <div className="grid gap-2">
+                      <Label htmlFor="otherService" data-testid="label-other-service">
+                        What are you looking for?
+                      </Label>
+                      <Input
+                        id="otherService"
+                        value={otherService}
+                        onChange={(e) => setOtherService(e.target.value)}
+                        className="rounded-xl"
+                        placeholder="Tell us what you need"
+                        data-testid="input-other-service"
+                      />
+                    </div>
+                  ) : null}
+
                   <div className="grid gap-2">
                     <Label htmlFor="company" data-testid="label-company">
                       Company
@@ -1046,14 +1042,26 @@ function ContactSection() {
 
                   <Button
                     className="h-11 rounded-xl"
-                    disabled={!canSubmit}
+                    disabled={!canSubmit || (serviceType === "other" && otherService.trim().length < 2)}
                     onClick={() => {
+                      const subject = encodeURIComponent("JustVideos.cloud — New brief");
+                      const lines = [
+                        `Service: ${serviceType === "other" ? otherService || "Other" : serviceType}`,
+                        `Name: ${name}`,
+                        `Email: ${email}`,
+                        `Company: ${company || "-"}`,
+                        "",
+                        message || "-",
+                      ];
+                      const body = encodeURIComponent(lines.join("\n"));
+
+                      window.location.href = `mailto:hemant@chabria.com?subject=${subject}&body=${body}`;
+
                       toast({
-                        title: "Brief received (mock)",
+                        title: "Opening email…",
                         description:
-                          "This is a prototype—your brief isn’t sent yet. We can wire it to real email/CRM when you upgrade.",
+                          "We’re preparing your brief to send to hemant@chabria.com via your email app.",
                       });
-                      setMessage("");
                     }}
                     data-testid="button-submit-brief"
                   >
@@ -1181,20 +1189,22 @@ function Footer() {
             © {new Date().getFullYear()} JustVideos.cloud
           </div>
           <div className="flex items-center gap-4 text-sm">
-            <a
-              href="#"
-              className="text-muted-foreground underline-offset-4 hover:underline"
-              data-testid="link-privacy"
-            >
-              Privacy
-            </a>
-            <a
-              href="#"
-              className="text-muted-foreground underline-offset-4 hover:underline"
-              data-testid="link-terms"
-            >
-              Terms
-            </a>
+            <Link href="/privacy">
+              <a
+                className="text-muted-foreground underline-offset-4 hover:underline"
+                data-testid="link-privacy"
+              >
+                Privacy
+              </a>
+            </Link>
+            <Link href="/terms">
+              <a
+                className="text-muted-foreground underline-offset-4 hover:underline"
+                data-testid="link-terms"
+              >
+                Terms
+              </a>
+            </Link>
           </div>
         </div>
       </Container>
@@ -1205,7 +1215,9 @@ function Footer() {
 function WhatsAppSticky() {
   return (
     <a
-      href="#"
+      href="https://wa.me/919830022890"
+      target="_blank"
+      rel="noreferrer"
       className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-semibold text-background shadow-lg transition hover:translate-y-[-1px] hover:shadow-xl"
       data-testid="button-whatsapp-sticky"
       aria-label="WhatsApp"
