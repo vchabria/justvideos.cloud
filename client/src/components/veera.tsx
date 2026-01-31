@@ -309,7 +309,7 @@ export function VeeraAgent() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 rounded-full border bg-background px-4 py-3 text-sm font-semibold shadow-lg transition hover:translate-y-[-1px] hover:shadow-xl"
+        className="fixed bottom-[92px] right-5 z-50 inline-flex items-center gap-2 rounded-full border bg-background px-4 py-3 text-sm font-semibold shadow-lg transition hover:translate-y-[-1px] hover:shadow-xl"
         data-testid="button-veera-open"
         aria-label="Open Veera"
       >
@@ -323,7 +323,7 @@ export function VeeraAgent() {
 
           {open ? (
         <div
-          className="fixed bottom-5 left-5 z-50 w-[min(420px,calc(100vw-40px))]"
+          className="fixed bottom-[148px] right-5 z-50 w-[min(420px,calc(100vw-40px))]"
           data-testid="panel-veera"
           role="dialog"
           aria-label="Veera voice agent"
