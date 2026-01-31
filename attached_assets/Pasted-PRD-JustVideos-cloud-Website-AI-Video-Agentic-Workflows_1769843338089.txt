@@ -1,0 +1,160 @@
+PRD: JustVideos.cloud Website (AI + Video + Agentic Workflows)
+1) Product summary
+
+JustVideos.cloud is the public-facing website for a modern video production house and AI workflow studio offering:
+
+End-to-end video production (brand, corporate, product, safety, training, explainers, event, social, reels).
+
+Generative AI services (image/video generation, voice, script, storyboards, dubbing, localization).
+
+Agentic AI services (voice agents, business workflows, AI websites, custom apps, automations).
+
+Custom-built workflows for enterprises and SMEs: lead capture → auto follow-up → content generation → approvals → publishing.
+
+Website goals:
+
+Convert visitors into qualified leads (book a call / request quote / submit brief).
+
+Prove credibility (brands served: L&T, Tata Steel, ITC, Emami, Haldia Petrochemicals, GRSE, etc.).
+
+Explain “what we do” simply, with strong examples and packaged offers.
+
+Support productized services (templates/packages) + custom enterprise engagements.
+
+2) Problem statement
+
+Potential clients struggle to understand:
+
+What “Generative AI” and “Agentic AI” means in business outcomes.
+
+Whether results are enterprise-grade (security, timelines, approvals, compliance).
+
+How much it costs and what process looks like.
+
+The breadth: video + AI + automation + apps.
+
+The current market has:
+
+Traditional production houses (slow + expensive).
+
+AI freelancers (fast but inconsistent, weak governance).
+
+Agencies (good branding but weak in technical automation).
+
+JustVideos should position as: “Production + AI engineering + workflow automation under one roof.”
+
+3) Target users & personas
+A) Enterprise Marketing/Brand Head
+
+Needs: high-quality videos at scale, brand safety, approvals, vendor reliability.
+Success: on-time delivery, consistent brand output, measurable campaign outputs.
+
+B) Plant/Operations/Safety Head (Industrial)
+
+Needs: safety/training videos, multilingual SOP content, compliance documentation.
+Success: reduced incidents, faster onboarding, consistent training.
+
+C) SME Founder/Marketing Manager
+
+Needs: cost-effective brand videos + AI website + lead automation.
+Success: more leads, better conversion, content pipeline.
+
+D) Product/IT/Transformation Lead
+
+Needs: agentic workflows, internal tools, voice agents, integrations.
+Success: reduced operational load, measurable ROI, governance.
+
+4) Value proposition & positioning
+
+Primary message:
+“JustVideos.cloud builds premium videos and AI-powered workflows that scale content + operations.”
+
+Key differentiators:
+
+Hybrid studio: Creative + Engineering + Automation
+
+Custom workflows (n8n / agents / CRM / WhatsApp / email / approvals)
+
+Multilingual, localization & voice
+
+Enterprise readiness: brand governance + controlled review cycles
+
+End-to-end delivery: script → shoot/AI → edit → versions → distribution
+
+5) Success metrics (KPIs)
+Acquisition & conversion
+
+Site to lead conversion rate: 2–5% baseline (target), improve over time.
+
+CTA completion rate (Book a Call / Submit Brief): >20% of CTA clicks.
+
+Average time on key pages (Services, Workflows, Case Studies): >90 sec.
+
+Lead quality
+
+% qualified leads (meeting criteria): >40%
+
+Time-to-first-response: <15 minutes (via automation + WhatsApp/email)
+
+Trust & proof
+
+Case study engagement rate: >25% of visitors scroll >50%
+
+Brand logo strip interactions: measurable (optional)
+
+6) Scope & features (MVP vs Phase 2)
+MVP (launch-ready)
+
+A. Core Pages
+
+Home
+
+Services (AI Video + Production + Agents + Workflows + Apps)
+
+Workflows Studio (how you build custom automations)
+
+Portfolio / Showreel
+
+Case Studies (at least 4–6, including industrial + brand)
+
+Industries (Manufacturing, Infrastructure, FMCG, Government/PSU, Retail, Education)
+
+About (company story + team + process)
+
+Contact (brief form + WhatsApp + calendar booking)
+
+Privacy + Terms
+
+B. Conversion Components
+
+“Submit your brief” structured form (segment-based)
+
+“Book a call” calendar embed
+
+WhatsApp CTA sticky button
+
+Lead qualification step (choose: Video / Voice Agent / Workflow / Website / App)
+
+C. Proof & Trust
+
+Logo strip of brands served (L&T, Tata Steel, ITC, Emami, Haldia Petrochemicals, GRSE…)
+
+Testimonials (text or video)
+
+Metrics snippets: “X videos delivered”, “Y languages”, “Z day turnaround” (only if true)
+
+D. Service Packaging (clear offers)
+
+3 tiers for video
+
+3 tiers for workflows/agents
+
+“Custom enterprise” option
+
+E. SEO Foundation
+
+Service landing pages optimized
+
+Schema (Organization, LocalBusiness/ProfessionalService, FAQ)
+
+Fast performance + clean metadata
