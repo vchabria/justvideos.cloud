@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -10,6 +9,7 @@ import {
   Film,
   Globe2,
   Layers,
+  Mail,
   MessageSquare,
   Phone,
   Sparkles,
@@ -18,7 +18,6 @@ import {
 
 import logoFull from "@assets/justvideos_logo-_1769848465350.png";
 import heroMesh from "@/assets/images/hero-mesh.png";
-
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -40,15 +39,10 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { VeeraAgent } from "@/components/veera";
+import { ChatBot } from "@/components/chat";
+
+const WHATSAPP_URL = "https://wa.me/919830022890?text=Hi%20Hemant%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20video%20project.";
 
 function Container({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto w-full max-w-6xl px-4 md:px-6">{children}</div>;
@@ -110,7 +104,7 @@ function TopNav() {
             >
               Submit brief
             </a>
-            <a href="/payment" data-testid="button-book-call" aria-label="Book a call">
+            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" data-testid="button-book-call" aria-label="Book a call">
               <Button size="sm" className="rounded-xl w-full">
                 Book a call
                 <ChevronRight className="ml-1 size-4" aria-hidden="true" />
@@ -164,13 +158,13 @@ function Hero() {
               className="mt-5 font-serif text-4xl font-semibold tracking-tight md:text-5xl"
               data-testid="text-hero-title"
             >
-              Premium videos and AI workflows that scale content + operations.
+              Cinematic videos. Intelligent workflows. Delivered fast.
             </h1>
             <p
               className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
               data-testid="text-hero-subtitle"
             >
-              From scripts and shoots to localization, approvals, and publishing—our studio blends creative production with agentic workflows for enterprise-ready delivery.
+              From scripts and shoots to localization, approvals, and publishing—Hemant Chabria's studio blends creative production with agentic workflows for enterprise-ready delivery.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -201,7 +195,7 @@ function Hero() {
             </div>
 
             <div className="mt-8 grid grid-cols-3 gap-3">
-              <div className="rounded-xl border bg-card p-3 shadow-sm">
+              <div className="rounded-xl border bg-card p-3 shadow-sm glow-gold">
                 <div className="text-xs text-muted-foreground" data-testid="label-metric-1">
                   Turnaround
                 </div>
@@ -209,7 +203,7 @@ function Hero() {
                   3–10 days
                 </div>
               </div>
-              <div className="rounded-xl border bg-card p-3 shadow-sm">
+              <div className="rounded-xl border bg-card p-3 shadow-sm glow-gold">
                 <div className="text-xs text-muted-foreground" data-testid="label-metric-2">
                   Languages
                 </div>
@@ -217,7 +211,7 @@ function Hero() {
                   Multi
                 </div>
               </div>
-              <div className="rounded-xl border bg-card p-3 shadow-sm">
+              <div className="rounded-xl border bg-card p-3 shadow-sm glow-gold">
                 <div className="text-xs text-muted-foreground" data-testid="label-metric-3">
                   Governance
                 </div>
@@ -341,6 +335,7 @@ const SERVICES = [
     key: "video",
     title: "Video production",
     icon: <Clapperboard className="size-4" aria-hidden="true" />,
+    popular: true,
     description:
       "Brand, corporate, product, safety, training, explainers, event videos—end-to-end with consistent quality.",
     bullets: ["Script → shoot/AI → edit", "Multiple versions & cutdowns", "Brand-safe review cycles"],
@@ -349,6 +344,7 @@ const SERVICES = [
     key: "ai-video",
     title: "Generative AI video",
     icon: <Sparkles className="size-4" aria-hidden="true" />,
+    popular: true,
     description:
       "Speed up storyboards, variations, b-roll, and localization using controlled AI pipelines.",
     bullets: ["Storyboards & animatics", "Voice + dubbing + localization", "Templates for repeatability"],
@@ -357,6 +353,7 @@ const SERVICES = [
     key: "agents",
     title: "Voice agents",
     icon: <Phone className="size-4" aria-hidden="true" />,
+    popular: false,
     description:
       "Front-office automation for lead qualification, FAQs, follow-ups, scheduling, and routing.",
     bullets: ["Lead triage & qualification", "Escalation rules & handoff", "Audit logs + governance"],
@@ -365,6 +362,7 @@ const SERVICES = [
     key: "workflows",
     title: "Agentic workflows",
     icon: <Workflow className="size-4" aria-hidden="true" />,
+    popular: false,
     description:
       "Automations that connect capture → approvals → publishing across your existing tools.",
     bullets: ["Brief intake → auto follow-up", "Approvals, comments, versioning", "Publishing + reporting"],
@@ -373,6 +371,7 @@ const SERVICES = [
     key: "apps",
     title: "AI websites + apps",
     icon: <Building2 className="size-4" aria-hidden="true" />,
+    popular: false,
     description:
       "Websites and internal tools that ship fast—integrated with your workflow and content engine.",
     bullets: ["Fast launch for SMEs", "Custom enterprise tools", "Measured conversion + UX"],
@@ -410,7 +409,7 @@ function ServicesSection() {
             {SERVICES.map((s) => (
               <Card
                 key={s.key}
-                className="grain hover-elevate rounded-2xl border bg-card p-5 shadow-sm transition"
+                className="grain glow-gold rounded-2xl border bg-card p-5 shadow-sm transition"
                 data-testid={`card-service-${s.key}`}
               >
                 <div className="flex items-start gap-3">
@@ -425,9 +424,11 @@ function ServicesSection() {
                       >
                         {s.title}
                       </div>
-                      <Badge className="rounded-full" data-testid={`badge-service-${s.key}`}>
-                        Popular
-                      </Badge>
+                      {s.popular && (
+                        <Badge className="rounded-full" data-testid={`badge-service-${s.key}`}>
+                          Popular
+                        </Badge>
+                      )}
                     </div>
                     <div
                       className="mt-1 text-sm leading-relaxed text-muted-foreground"
@@ -519,7 +520,7 @@ function WorkflowsSection() {
                   Want a workflow map?
                 </div>
                 <p className="mt-1 text-sm text-muted-foreground" data-testid="text-workflows-cta-desc">
-                  Share your current process and tools—we’ll sketch a high-level automation plan.
+                  Share your current process and tools—we'll sketch a high-level automation plan.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Button
@@ -535,7 +536,7 @@ function WorkflowsSection() {
                     data-testid="button-workflows-book"
                     asChild
                   >
-                    <a href="#contact">Book a call</a>
+                    <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Book a call</a>
                   </Button>
                 </div>
               </div>
@@ -663,7 +664,7 @@ function ProofSection() {
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <div className="text-sm font-medium" data-testid="text-logo-strip-title">
-                  Brands & teams we’ve supported
+                  Brands & teams we've supported
                 </div>
                 <div className="text-sm text-muted-foreground" data-testid="text-logo-strip-subtitle">
                   Representative list. Full client list available on request.
@@ -709,7 +710,7 @@ function CaseCard({
 }) {
   return (
     <Card
-      className="grain hover-elevate rounded-2xl border bg-card p-5 shadow-sm transition"
+      className="grain glow-gold rounded-2xl border bg-card p-5 shadow-sm transition"
       data-testid={`card-case-${id}`}
     >
       <div className="flex items-start justify-between gap-4">
@@ -811,7 +812,7 @@ function PackagesSection() {
             {packages.map((p) => (
               <Card
                 key={p.title}
-                className="grain rounded-2xl border bg-card p-5 shadow-sm"
+                className="grain glow-gold rounded-2xl border bg-card p-5 shadow-sm"
                 data-testid={`card-package-${p.title.toLowerCase().replaceAll(" ", "-").replaceAll("—", "-")}`}
               >
                 <div className="text-sm text-muted-foreground" data-testid={`text-package-price-${p.title.toLowerCase().replaceAll(" ", "-")}`}>
@@ -869,7 +870,7 @@ function FAQSection() {
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger data-testid="accordion-trigger-1">
-                  What do you mean by “agentic workflows”?
+                  What do you mean by "agentic workflows"?
                 </AccordionTrigger>
                 <AccordionContent data-testid="accordion-content-1">
                   Think of it as a system of automations + AI that moves work forward: capturing briefs, generating drafts, collecting approvals, creating versions, and publishing—while keeping governance and human review in place.
@@ -920,14 +921,14 @@ function ContactSection() {
                 Submit your brief
               </h2>
               <p className="mt-2 max-w-xl text-muted-foreground" data-testid="text-contact-subtitle">
-                Tell us what you’re building. We’ll reply within 15 minutes with next steps and a scope outline.
+                Tell us what you're building. We'll reply within 15 minutes with next steps and a scope outline.
               </p>
 
               <div className="mt-6 rounded-2xl border bg-card p-5 shadow-sm">
                 <div className="grid gap-4">
                   <div className="grid gap-2">
                     <Label htmlFor="service" data-testid="label-service">
-                      I’m interested in
+                      I'm interested in
                     </Label>
                     <Select value={serviceType} onValueChange={setServiceType}>
                       <SelectTrigger id="service" className="rounded-xl" data-testid="select-service">
@@ -1133,7 +1134,9 @@ function ContactSection() {
                     </div>
                   </div>
                   <a
-                    href="#"
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-xl border bg-background px-3 py-2 text-sm font-medium shadow-sm hover:bg-muted"
                     data-testid="link-whatsapp"
                   >
@@ -1179,10 +1182,35 @@ function Footer() {
     <footer className="border-t bg-background">
       <Container>
         <div className="flex flex-col gap-4 py-10 md:flex-row md:items-center md:justify-between">
-          <div className="text-sm text-muted-foreground" data-testid="text-footer-copy">
-            © {new Date().getFullYear()} JustVideos.cloud
+          <div>
+            <div className="text-sm font-medium" data-testid="text-footer-name">
+              Hemant Chabria | JustVideos.cloud
+            </div>
+            <div className="mt-1 flex items-center gap-4 text-sm text-muted-foreground">
+              <a
+                href="mailto:hemant@chabria.com"
+                className="inline-flex items-center gap-1 hover:text-foreground"
+                data-testid="link-footer-email"
+              >
+                <Mail className="size-3.5" aria-hidden="true" />
+                hemant@chabria.com
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 hover:text-foreground"
+                data-testid="link-footer-whatsapp"
+              >
+                <MessageSquare className="size-3.5" aria-hidden="true" />
+                WhatsApp
+              </a>
+            </div>
           </div>
           <div className="flex items-center gap-4 text-sm">
+            <span className="text-muted-foreground" data-testid="text-footer-copy">
+              © {new Date().getFullYear()} JustVideos.cloud
+            </span>
             <a
               href="/privacy"
               className="text-muted-foreground underline-offset-4 hover:underline"
@@ -1207,10 +1235,10 @@ function Footer() {
 function WhatsAppSticky() {
   return (
     <a
-      href="https://wa.me/919830022890"
+      href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-semibold text-background shadow-lg transition hover:translate-y-[-1px] hover:shadow-xl"
+      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg transition hover:translate-y-[-1px] hover:shadow-xl"
       data-testid="button-whatsapp-sticky"
       aria-label="WhatsApp"
     >
@@ -1232,7 +1260,7 @@ export default function HomePage() {
       <FAQSection />
       <ContactSection />
       <Footer />
-      <VeeraAgent />
+      <ChatBot />
       <WhatsAppSticky />
     </div>
   );
