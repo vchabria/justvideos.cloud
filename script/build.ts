@@ -4,7 +4,6 @@ import { rm, readFile } from "fs/promises";
 
 // server deps to bundle to reduce openat(2) syscalls
 const allowlist = [
-  "@anthropic-ai/sdk",
   "express",
   "nodemailer",
   "zod",

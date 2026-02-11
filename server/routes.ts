@@ -2,7 +2,6 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { contactBriefSchema } from "@shared/schema";
 import nodemailer from "nodemailer";
-import Anthropic from "@anthropic-ai/sdk";
 
 const SYSTEM_PROMPT = `You are the JustVideos.cloud assistant — a helpful, concise guide for Hemant Chabria's video production studio.
 
@@ -106,7 +105,7 @@ export async function registerRoutes(
       return res.status(400).json({ message: "Messages array is required." });
     }
 
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.OPENROUTER_API_KEY;
 
     if (!apiKey) {
       return res.json({
@@ -116,20 +115,29 @@ export async function registerRoutes(
     }
 
     try {
-      const client = new Anthropic({ apiKey });
-
-      const response = await client.messages.create({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 512,
-        system: SYSTEM_PROMPT,
-        messages: messages.slice(-10).map((m: { role: string; content: string }) => ({
-          role: m.role as "user" | "assistant",
-          content: m.content,
-        })),
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://justvideos.cloud",
+          "X-Title": "JustVideos.cloud",
+        },
+        body: JSON.stringify({
+          model: "anthropic/claude-sonnet-4-20250514",
+          max_tokens: 512,
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            ...messages.slice(-10).map((m: { role: string; content: string }) => ({
+              role: m.role,
+              content: m.content,
+            })),
+          ],
+        }),
       });
 
-      const textBlock = response.content.find((b) => b.type === "text");
-      const reply = textBlock ? textBlock.text : "I couldn't generate a response. Please try again.";
+      const data = await response.json();
+      const reply = data?.choices?.[0]?.message?.content || "I couldn't generate a response. Please try again.";
 
       return res.json({ reply });
     } catch (err: any) {
