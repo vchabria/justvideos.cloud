@@ -1033,25 +1033,29 @@ function ContactSection() {
                   <Button
                     className="h-11 rounded-xl"
                     disabled={!canSubmit || (serviceType === "other" && otherService.trim().length < 2)}
-                    onClick={() => {
-                      const subject = encodeURIComponent("JustVideos.cloud — New brief");
-                      const lines = [
-                        `Service: ${serviceType === "other" ? otherService || "Other" : serviceType}`,
-                        `Name: ${name}`,
-                        `Email: ${email}`,
-                        `Company: ${company || "-"}`,
-                        "",
-                        message || "-",
-                      ];
-                      const body = encodeURIComponent(lines.join("\n"));
-
-                      window.location.href = `mailto:hemant@chabria.com?subject=${subject}&body=${body}`;
-
-                      toast({
-                        title: "Opening email…",
-                        description:
-                          "We’re preparing your brief to send to hemant@chabria.com via your email app.",
-                      });
+                    onClick={async () => {
+                      try {
+                        const res = await fetch("/api/contact", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({
+                            name,
+                            email,
+                            service: serviceType === "other" ? otherService || "Other" : serviceType,
+                            company: company || undefined,
+                            message: message || undefined,
+                          }),
+                        });
+                        const data = await res.json();
+                        if (res.ok) {
+                          toast({ title: "Brief sent!", description: data.message || "We'll get back to you shortly." });
+                          setName(""); setEmail(""); setCompany(""); setMessage(""); setServiceType("");
+                        } else {
+                          toast({ title: "Error", description: data.message || "Something went wrong.", variant: "destructive" });
+                        }
+                      } catch {
+                        toast({ title: "Network error", description: "Please try again or use WhatsApp.", variant: "destructive" });
+                      }
                     }}
                     data-testid="button-submit-brief"
                   >
