@@ -6,14 +6,19 @@ import {
   Building2,
   ChevronRight,
   Clapperboard,
+  ExternalLink,
   Film,
   Globe2,
+  Instagram,
   Layers,
+  Linkedin,
   Mail,
   MessageSquare,
   Phone,
+  Play,
   Sparkles,
   Workflow,
+  Youtube,
 } from "lucide-react";
 
 import logoFull from "@assets/justvideos_logo-_1769848465350.png";
@@ -195,7 +200,7 @@ function Hero() {
             </div>
 
             <div className="mt-8 grid grid-cols-3 gap-3">
-              <div className="rounded-xl border bg-card p-3 shadow-sm glow-gold">
+              <div className="rounded-xl border bg-card p-3 shadow-sm glow-blue">
                 <div className="text-xs text-muted-foreground" data-testid="label-metric-1">
                   Turnaround
                 </div>
@@ -203,7 +208,7 @@ function Hero() {
                   3–10 days
                 </div>
               </div>
-              <div className="rounded-xl border bg-card p-3 shadow-sm glow-gold">
+              <div className="rounded-xl border bg-card p-3 shadow-sm glow-blue">
                 <div className="text-xs text-muted-foreground" data-testid="label-metric-2">
                   Languages
                 </div>
@@ -211,7 +216,7 @@ function Hero() {
                   Multi
                 </div>
               </div>
-              <div className="rounded-xl border bg-card p-3 shadow-sm glow-gold">
+              <div className="rounded-xl border bg-card p-3 shadow-sm glow-blue">
                 <div className="text-xs text-muted-foreground" data-testid="label-metric-3">
                   Governance
                 </div>
@@ -409,7 +414,7 @@ function ServicesSection() {
             {SERVICES.map((s) => (
               <Card
                 key={s.key}
-                className="grain glow-gold rounded-2xl border bg-card p-5 shadow-sm transition"
+                className="grain glow-blue rounded-2xl border bg-card p-5 shadow-sm transition"
                 data-testid={`card-service-${s.key}`}
               >
                 <div className="flex items-start gap-3">
@@ -629,12 +634,14 @@ function ProofSection() {
             </div>
             <div className="flex justify-start md:justify-end">
               <a
-                href="#contact"
+                href="https://www.youtube.com/c/HemantChabria"
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                 data-testid="link-proof-request-showreel"
               >
-                Request showreel
-                <ArrowRight className="size-4" aria-hidden="true" />
+                Watch showreel on YouTube
+                <Play className="size-4" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -679,16 +686,18 @@ function ProofSection() {
                 </Badge>
               </div>
             </div>
-            <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-              {LOGOS.map((l, idx) => (
-                <div
-                  key={l}
-                  className="rounded-xl border bg-background/60 px-3 py-2 text-center text-sm text-muted-foreground"
-                  data-testid={`text-logo-${idx}`}
-                >
-                  {l}
-                </div>
-              ))}
+            <div className="mask-fade-y mt-4 overflow-hidden">
+              <div className="flex w-max gap-3 animate-scroll-left">
+                {[...LOGOS, ...LOGOS].map((l, idx) => (
+                  <div
+                    key={`${l}-${idx}`}
+                    className="flex h-12 shrink-0 items-center rounded-xl border bg-background/60 px-5 text-sm font-medium text-muted-foreground"
+                    data-testid={`text-logo-${idx}`}
+                  >
+                    {l}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -710,7 +719,7 @@ function CaseCard({
 }) {
   return (
     <Card
-      className="grain glow-gold rounded-2xl border bg-card p-5 shadow-sm transition"
+      className="grain glow-blue rounded-2xl border bg-card p-5 shadow-sm transition"
       data-testid={`card-case-${id}`}
     >
       <div className="flex items-start justify-between gap-4">
@@ -731,12 +740,14 @@ function CaseCard({
       </p>
       <div className="mt-5 flex items-center justify-between">
         <a
-          href="#contact"
+          href="https://www.youtube.com/c/HemantChabria"
+          target="_blank"
+          rel="noreferrer"
           className="inline-flex items-center gap-2 text-sm font-medium text-primary"
           data-testid={`link-case-cta-${id}`}
         >
-          Ask for details
-          <ArrowRight className="size-4" aria-hidden="true" />
+          Watch on YouTube
+          <Play className="size-4" aria-hidden="true" />
         </a>
         <span className="text-xs text-muted-foreground" data-testid={`text-case-note-${id}`}>
           NDA-friendly
@@ -812,7 +823,7 @@ function PackagesSection() {
             {packages.map((p) => (
               <Card
                 key={p.title}
-                className="grain glow-gold rounded-2xl border bg-card p-5 shadow-sm"
+                className="grain glow-blue rounded-2xl border bg-card p-5 shadow-sm"
                 data-testid={`card-package-${p.title.toLowerCase().replaceAll(" ", "-").replaceAll("—", "-")}`}
               >
                 <div className="text-sm text-muted-foreground" data-testid={`text-package-price-${p.title.toLowerCase().replaceAll(" ", "-")}`}>
@@ -1181,7 +1192,7 @@ function Footer() {
   return (
     <footer className="border-t bg-background">
       <Container>
-        <div className="flex flex-col gap-4 py-10 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 py-10 md:flex-row md:items-start md:justify-between">
           <div>
             <div className="text-sm font-medium" data-testid="text-footer-name">
               Hemant Chabria | JustVideos.cloud
@@ -1204,6 +1215,48 @@ function Footer() {
               >
                 <MessageSquare className="size-3.5" aria-hidden="true" />
                 WhatsApp
+              </a>
+            </div>
+            <div className="mt-3 flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com/in/chabria/"
+                target="_blank"
+                rel="noreferrer"
+                className="grid size-8 place-items-center rounded-lg border bg-card text-muted-foreground transition hover:text-primary hover:border-primary/30"
+                aria-label="LinkedIn"
+                data-testid="link-footer-linkedin"
+              >
+                <Linkedin className="size-4" aria-hidden="true" />
+              </a>
+              <a
+                href="https://www.instagram.com/hemantchabria/"
+                target="_blank"
+                rel="noreferrer"
+                className="grid size-8 place-items-center rounded-lg border bg-card text-muted-foreground transition hover:text-primary hover:border-primary/30"
+                aria-label="Instagram"
+                data-testid="link-footer-instagram"
+              >
+                <Instagram className="size-4" aria-hidden="true" />
+              </a>
+              <a
+                href="https://x.com/hemantchabria"
+                target="_blank"
+                rel="noreferrer"
+                className="grid size-8 place-items-center rounded-lg border bg-card text-muted-foreground transition hover:text-primary hover:border-primary/30"
+                aria-label="X (Twitter)"
+                data-testid="link-footer-twitter"
+              >
+                <ExternalLink className="size-4" aria-hidden="true" />
+              </a>
+              <a
+                href="https://www.youtube.com/c/HemantChabria"
+                target="_blank"
+                rel="noreferrer"
+                className="grid size-8 place-items-center rounded-lg border bg-card text-muted-foreground transition hover:text-primary hover:border-primary/30"
+                aria-label="YouTube"
+                data-testid="link-footer-youtube"
+              >
+                <Youtube className="size-4" aria-hidden="true" />
               </a>
             </div>
           </div>
