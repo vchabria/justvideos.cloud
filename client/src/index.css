@@ -28,12 +28,6 @@
   --color-card-border: hsl(var(--card-border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-  --color-chart-1: hsl(var(--chart-1));
-  --color-chart-2: hsl(var(--chart-2));
-  --color-chart-3: hsl(var(--chart-3));
-  --color-chart-4: hsl(var(--chart-4));
-  --color-chart-5: hsl(var(--chart-5));
-
   --color-primary-border: var(--primary-border);
   --color-secondary-border: var(--secondary-border);
   --color-muted-border: var(--muted-border);
@@ -81,15 +75,8 @@
   --input: 200 16% 78%;
   --ring: 195 100% 47%;
 
-  --chart-1: 195 100% 47%;
-  --chart-2: 358 80% 51%;
-  --chart-3: 210 60% 50%;
-  --chart-4: 168 66% 42%;
-  --chart-5: 26 92% 56%;
-
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
   --font-serif: "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   --radius: 0.85rem;
 
@@ -152,12 +139,6 @@
   --card-border: 210 10% 18%;
   --input: 210 10% 22%;
   --ring: 195 100% 47%;
-
-  --chart-1: 195 100% 52%;
-  --chart-2: 358 80% 56%;
-  --chart-3: 210 60% 55%;
-  --chart-4: 168 66% 48%;
-  --chart-5: 26 92% 60%;
 
   --shadow-2xs: 0px 2px 0px 0px hsl(195 100% 47% / 0);
   --shadow-xs: 0px 2px 0px 0px hsl(195 100% 47% / 0);
@@ -317,11 +298,6 @@
   .mask-fade-x {
     -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
     mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-  }
-
-  .mask-fade-y {
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
   }
 
   @keyframes scroll-left {

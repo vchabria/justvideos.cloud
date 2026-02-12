@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 
-import logoFull from "@assets/justvideos_logo-_1769848465350.png";
+import logoFull from "@/assets/images/justvideos-logo.png";
 import heroMesh from "@/assets/images/hero-mesh.png";
 
 import { Button } from "@/components/ui/button";

@@ -7,5 +7,3 @@ export const contactBriefSchema = z.object({
   company: z.string().optional(),
   message: z.string().optional(),
 });
-
-export type ContactBrief = z.infer<typeof contactBriefSchema>;

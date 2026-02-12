@@ -7,7 +7,6 @@ const allowlist = [
   "express",
   "nodemailer",
   "zod",
-  "zod-validation-error",
 ];
 
 async function buildAll() {
