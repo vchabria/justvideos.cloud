@@ -117,6 +117,69 @@
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
+/* Dark theme — same brand colors, dark surfaces */
+.dark {
+  --button-outline: rgba(255, 255, 255, 0.08);
+  --badge-outline: rgba(255, 255, 255, 0.04);
+  --opaque-button-border-intensity: 8;
+  --elevate-1: rgba(255, 255, 255, 0.04);
+  --elevate-2: rgba(255, 255, 255, 0.08);
+
+  --background: 210 16% 6%;
+  --foreground: 200 14% 92%;
+
+  --card: 210 12% 9%;
+  --card-foreground: 200 14% 92%;
+  --popover: 210 12% 9%;
+  --popover-foreground: 200 14% 92%;
+
+  --primary: 195 100% 47%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 210 10% 14%;
+  --secondary-foreground: 200 14% 88%;
+
+  --muted: 210 10% 14%;
+  --muted-foreground: 210 8% 56%;
+
+  --accent: 358 80% 51%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 72% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 210 10% 16%;
+  --card-border: 210 10% 18%;
+  --input: 210 10% 22%;
+  --ring: 195 100% 47%;
+
+  --chart-1: 195 100% 52%;
+  --chart-2: 358 80% 56%;
+  --chart-3: 210 60% 55%;
+  --chart-4: 168 66% 48%;
+  --chart-5: 26 92% 60%;
+
+  --shadow-2xs: 0px 2px 0px 0px hsl(195 100% 47% / 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(195 100% 47% / 0);
+  --shadow-sm: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
+  --shadow: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
+  --shadow-md: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 10px 22px -14px hsl(0 0% 0% / 0.4);
+  --shadow-lg: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 18px 38px -22px hsl(0 0% 0% / 0.5);
+  --shadow-xl: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 30px 70px -42px hsl(0 0% 0% / 0.6);
+  --shadow-2xl: 0px 2px 0px 0px hsl(195 100% 47% / 0);
+
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -231,12 +294,29 @@
       linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
   }
 
+  .dark .gradient-hero {
+    background:
+      radial-gradient(900px 420px at 14% 12%, hsl(195 100% 47% / 0.12), transparent 60%),
+      radial-gradient(880px 520px at 72% 18%, hsl(358 80% 51% / 0.08), transparent 62%),
+      radial-gradient(700px 520px at 52% 72%, hsl(195 80% 60% / 0.10), transparent 62%),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
+  }
+
   .glow-blue {
     transition: box-shadow 0.3s ease;
   }
 
   .glow-blue:hover {
     box-shadow: 0 0 20px -4px hsl(195 100% 47% / 0.2);
+  }
+
+  .dark .glow-blue:hover {
+    box-shadow: 0 0 24px -4px hsl(195 100% 47% / 0.3);
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
   }
 
   .mask-fade-y {

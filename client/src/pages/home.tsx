@@ -14,12 +14,15 @@ import {
   Linkedin,
   Mail,
   MessageSquare,
+  Moon,
   Phone,
   Play,
   Sparkles,
+  Sun,
   Workflow,
   Youtube,
 } from "lucide-react";
+import { useTheme } from "@/hooks/use-theme";
 
 import logoFull from "@assets/justvideos_logo-_1769848465350.png";
 import heroMesh from "@/assets/images/hero-mesh.png";
@@ -54,6 +57,7 @@ function Container({ children }: { children: React.ReactNode }) {
 }
 
 function TopNav() {
+  const { theme, toggleTheme } = useTheme();
   return (
     <div className="sticky top-0 z-50 border-b bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/55">
       <Container>
@@ -109,6 +113,18 @@ function TopNav() {
             >
               Submit brief
             </a>
+            <button
+              onClick={toggleTheme}
+              className="grid size-9 place-items-center rounded-xl border bg-card text-muted-foreground transition hover:text-foreground"
+              aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+              data-testid="button-theme-toggle"
+            >
+              {theme === "light" ? (
+                <Moon className="size-4" aria-hidden="true" />
+              ) : (
+                <Sun className="size-4" aria-hidden="true" />
+              )}
+            </button>
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" data-testid="button-book-call" aria-label="Book a call">
               <Button size="sm" className="rounded-xl w-full">
                 Book a call
@@ -599,23 +615,23 @@ function WorkflowsSection() {
   );
 }
 
-const LOGOS = [
-  "L&T",
-  "Tata Steel",
-  "Emami",
-  "Haldia Petrochemicals",
-  "GRSE",
-  "Tata",
-  "Aditya Birla Group",
-  "Reliance",
-  "IndianOil",
-  "GAIL",
-  "JSW",
-  "Hindalco",
-  "Marico",
-  "Britannia",
-  "Nestlé",
-  "ITC",
+const LOGOS: { name: string; logo: string }[] = [
+  { name: "L&T", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Larsen-%26-Toubro-Logo.svg" },
+  { name: "Tata Steel", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Tata_Steel_Logo.svg" },
+  { name: "Emami", logo: "https://upload.wikimedia.org/wikipedia/en/c/c2/Emami_logo.svg" },
+  { name: "Haldia Petrochemicals", logo: "https://upload.wikimedia.org/wikipedia/commons/8/82/Haldia_Petrochemicals_Logo.svg" },
+  { name: "GRSE", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/GRSE_Logo.png" },
+  { name: "Tata", logo: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Tata_logo.svg" },
+  { name: "Aditya Birla Group", logo: "https://upload.wikimedia.org/wikipedia/en/7/75/Aditya_Birla_Group_Logo.svg" },
+  { name: "Reliance", logo: "https://upload.wikimedia.org/wikipedia/en/0/0e/Reliance_Industries.svg" },
+  { name: "IndianOil", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Indian_Oil_Logo.svg" },
+  { name: "GAIL", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4c/GAIL.svg" },
+  { name: "JSW", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3c/JSW_Group_logo.svg" },
+  { name: "Hindalco", logo: "https://upload.wikimedia.org/wikipedia/en/2/22/Hindalco_Logo.svg" },
+  { name: "Marico", logo: "https://upload.wikimedia.org/wikipedia/en/9/90/Marico_Logo.svg" },
+  { name: "Britannia", logo: "https://upload.wikimedia.org/wikipedia/en/5/50/Britannia_Industries_logo_with_motto.svg" },
+  { name: "Nestlé", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Nestl%C3%A9_textlogo.svg" },
+  { name: "ITC", logo: "https://upload.wikimedia.org/wikipedia/commons/f/ff/ITC_Limited_Logo.svg" },
 ];
 
 function ProofSection() {
@@ -686,15 +702,21 @@ function ProofSection() {
                 </Badge>
               </div>
             </div>
-            <div className="mask-fade-y mt-4 overflow-hidden">
-              <div className="flex w-max gap-3 animate-scroll-left">
+            <div className="mask-fade-x mt-4 overflow-hidden">
+              <div className="flex w-max gap-4 animate-scroll-left">
                 {[...LOGOS, ...LOGOS].map((l, idx) => (
                   <div
-                    key={`${l}-${idx}`}
-                    className="flex h-12 shrink-0 items-center rounded-xl border bg-background/60 px-5 text-sm font-medium text-muted-foreground"
-                    data-testid={`text-logo-${idx}`}
+                    key={`${l.name}-${idx}`}
+                    className="flex h-14 w-28 shrink-0 items-center justify-center rounded-xl border bg-background/60 px-3"
+                    data-testid={`logo-${idx}`}
+                    title={l.name}
                   >
-                    {l}
+                    <img
+                      src={l.logo}
+                      alt={l.name}
+                      className="h-8 max-w-full object-contain dark:brightness-0 dark:invert dark:opacity-70"
+                      loading="lazy"
+                    />
                   </div>
                 ))}
               </div>
