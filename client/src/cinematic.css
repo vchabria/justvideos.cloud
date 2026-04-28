@@ -65,6 +65,10 @@
   font-size: clamp(56px, 11vw, 188px);
   line-height: 0.92;
   letter-spacing: -0.025em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3),
+               0 4px 40px rgba(0, 0, 0, 0.15);
+}
+.cinematic-page[data-theme="dark"] .display {
   text-shadow: 0 2px 20px color-mix(in srgb, var(--bg) 80%, transparent),
                0 4px 40px color-mix(in srgb, var(--bg) 60%, transparent);
 }

@@ -348,17 +348,16 @@ export interface Client {
 
 export const CLIENTS: Client[] = [
   { name: "L&T Construction", logo: "/logos/lt.svg" },
-  { name: "Pluo Tree", logo: "/logos/pluo-tree.svg" },
-  { name: "CSR Foundation", logo: "/logos/csr-foundation.svg" },
+  { name: "Tata Steel", logo: "/logos/tata-steel.png" },
+  { name: "Hitachi", logo: "/logos/hitachi.png" },
+  { name: "OMNI", logo: "/logos/omni.png" },
+  { name: "Huston", logo: "/logos/huston.png" },
+  { name: "MSSC", logo: "/logos/mssc.png" },
+  { name: "PPS", logo: "/logos/pps.svg" },
+  { name: "Packaging Systems", logo: "/logos/psi.png" },
+  { name: "Cold Chain", logo: "/logos/cold-chain.png" },
   { name: "Greatest Show On Earth", logo: "/logos/greatest-show.svg" },
-  { name: "Aakriti Jewels", logo: "/logos/aakriti-jewels.svg" },
-  { name: "Saffron Beauty", logo: "/logos/saffron-beauty.svg" },
-  { name: "Coastal Industries", logo: "/logos/coastal.svg" },
-  { name: "Kumaresan Inc.", logo: "/logos/kumaresan.svg" },
-  { name: "Marketing Pyramid", logo: "/logos/marketing-pyramid.svg" },
-  { name: "Heritage Films", logo: "/logos/heritage.svg" },
-  { name: "Tourism Bengal", logo: "/logos/tourism-bengal.svg" },
-  { name: "Eastern Group", logo: "/logos/eastern.svg" },
+  { name: "Business in Motion", logo: "/logos/marketing-pyramid.svg" },
 ];
 
 export interface FaqItem {
