@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: justvideos-cloud
+    runtime: node
+    plan: free
+    buildCommand: npm install && npx vite build
+    startCommand: node dist/index.cjs
+    envVars:
+      - key: NODE_ENV
+        value: production
