@@ -6,6 +6,7 @@ const contactBriefSchema = z.object({
   email: z.string().email("Valid email is required"),
   service: z.string().min(1, "Service is required"),
   company: z.string().optional(),
+  budget: z.string().optional(),
   message: z.string().optional(),
 });
 
