@@ -35,11 +35,10 @@
   --color-destructive-border: var(--destructive-border);
 }
 
-/* Light theme derived from JustVideos logo:
-   Sky blue (#00AEEF) = primary
-   Red (#E31E24) = accent
-   Black (#1A1A1A) = foreground
-   White = background */
+/* Brand tokens derived from JustVideos logo:
+   Cyan (#29b8ff / hsl 201 100% 58%) = primary — matches cinematic --accent
+   Red  (#e7282b / hsl 359 80% 53%)  = accent  — matches cinematic --brand-red
+   Cinematic pages scope their own tokens to .cinematic-page to avoid conflicts. */
 :root {
   --button-outline: rgba(0, 0, 0, 0.1);
   --badge-outline: rgba(0, 0, 0, 0.05);
@@ -55,7 +54,7 @@
   --popover: 0 0% 100%;
   --popover-foreground: 210 20% 10%;
 
-  --primary: 195 100% 47%;
+  --primary: 201 100% 58%;
   --primary-foreground: 0 0% 100%;
 
   --secondary: 200 18% 94%;
@@ -64,7 +63,7 @@
   --muted: 200 14% 94%;
   --muted-foreground: 210 10% 42%;
 
-  --accent: 358 80% 51%;
+  --accent: 359 80% 53%;
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 56%;
@@ -73,21 +72,21 @@
   --border: 200 16% 88%;
   --card-border: 200 16% 86%;
   --input: 200 16% 78%;
-  --ring: 195 100% 47%;
+  --ring: 201 100% 58%;
 
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
   --font-serif: "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 
   --radius: 0.85rem;
 
-  --shadow-2xs: 0px 2px 0px 0px hsl(195 100% 47% / 0);
-  --shadow-xs: 0px 2px 0px 0px hsl(195 100% 47% / 0);
-  --shadow-sm: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 1px 2px -1px hsl(210 20% 14% / 0.08);
-  --shadow: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 1px 2px -1px hsl(210 20% 14% / 0.08);
-  --shadow-md: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 10px 22px -14px hsl(210 20% 14% / 0.14);
-  --shadow-lg: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 18px 38px -22px hsl(210 20% 14% / 0.18);
-  --shadow-xl: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 30px 70px -42px hsl(210 20% 14% / 0.20);
-  --shadow-2xl: 0px 2px 0px 0px hsl(195 100% 47% / 0);
+  --shadow-2xs: 0px 2px 0px 0px hsl(201 100% 58% / 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(201 100% 58% / 0);
+  --shadow-sm: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 1px 2px -1px hsl(210 20% 14% / 0.08);
+  --shadow: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 1px 2px -1px hsl(210 20% 14% / 0.08);
+  --shadow-md: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 10px 22px -14px hsl(210 20% 14% / 0.14);
+  --shadow-lg: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 18px 38px -22px hsl(210 20% 14% / 0.18);
+  --shadow-xl: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 30px 70px -42px hsl(210 20% 14% / 0.20);
+  --shadow-2xl: 0px 2px 0px 0px hsl(201 100% 58% / 0);
 
   --tracking-normal: 0em;
   --spacing: 0.25rem;
@@ -120,7 +119,7 @@
   --popover: 210 12% 9%;
   --popover-foreground: 200 14% 92%;
 
-  --primary: 195 100% 47%;
+  --primary: 201 100% 58%;
   --primary-foreground: 0 0% 100%;
 
   --secondary: 210 10% 14%;
@@ -129,7 +128,7 @@
   --muted: 210 10% 14%;
   --muted-foreground: 210 8% 56%;
 
-  --accent: 358 80% 51%;
+  --accent: 359 80% 53%;
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 72% 50%;
@@ -138,16 +137,16 @@
   --border: 210 10% 16%;
   --card-border: 210 10% 18%;
   --input: 210 10% 22%;
-  --ring: 195 100% 47%;
+  --ring: 201 100% 58%;
 
-  --shadow-2xs: 0px 2px 0px 0px hsl(195 100% 47% / 0);
-  --shadow-xs: 0px 2px 0px 0px hsl(195 100% 47% / 0);
-  --shadow-sm: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
-  --shadow: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
-  --shadow-md: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 10px 22px -14px hsl(0 0% 0% / 0.4);
-  --shadow-lg: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 18px 38px -22px hsl(0 0% 0% / 0.5);
-  --shadow-xl: 0px 2px 0px 0px hsl(195 100% 47% / 0), 0px 30px 70px -42px hsl(0 0% 0% / 0.6);
-  --shadow-2xl: 0px 2px 0px 0px hsl(195 100% 47% / 0);
+  --shadow-2xs: 0px 2px 0px 0px hsl(201 100% 58% / 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(201 100% 58% / 0);
+  --shadow-sm: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
+  --shadow: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
+  --shadow-md: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 10px 22px -14px hsl(0 0% 0% / 0.4);
+  --shadow-lg: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 18px 38px -22px hsl(0 0% 0% / 0.5);
+  --shadow-xl: 0px 2px 0px 0px hsl(201 100% 58% / 0), 0px 30px 70px -42px hsl(0 0% 0% / 0.6);
+  --shadow-2xl: 0px 2px 0px 0px hsl(201 100% 58% / 0);
 
   --primary-border: hsl(var(--primary));
   --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
@@ -269,16 +268,16 @@
 
   .gradient-hero {
     background:
-      radial-gradient(900px 420px at 14% 12%, hsl(195 100% 47% / 0.08), transparent 60%),
-      radial-gradient(880px 520px at 72% 18%, hsl(358 80% 51% / 0.05), transparent 62%),
+      radial-gradient(900px 420px at 14% 12%, hsl(201 100% 58% / 0.08), transparent 60%),
+      radial-gradient(880px 520px at 72% 18%, hsl(359 80% 53% / 0.05), transparent 62%),
       radial-gradient(700px 520px at 52% 72%, hsl(195 80% 60% / 0.06), transparent 62%),
       linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
   }
 
   .dark .gradient-hero {
     background:
-      radial-gradient(900px 420px at 14% 12%, hsl(195 100% 47% / 0.12), transparent 60%),
-      radial-gradient(880px 520px at 72% 18%, hsl(358 80% 51% / 0.08), transparent 62%),
+      radial-gradient(900px 420px at 14% 12%, hsl(201 100% 58% / 0.12), transparent 60%),
+      radial-gradient(880px 520px at 72% 18%, hsl(359 80% 53% / 0.08), transparent 62%),
       radial-gradient(700px 520px at 52% 72%, hsl(195 80% 60% / 0.10), transparent 62%),
       linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
   }
@@ -288,11 +287,11 @@
   }
 
   .glow-blue:hover {
-    box-shadow: 0 0 20px -4px hsl(195 100% 47% / 0.2);
+    box-shadow: 0 0 20px -4px hsl(201 100% 58% / 0.2);
   }
 
   .dark .glow-blue:hover {
-    box-shadow: 0 0 24px -4px hsl(195 100% 47% / 0.3);
+    box-shadow: 0 0 24px -4px hsl(201 100% 58% / 0.3);
   }
 
   .mask-fade-x {

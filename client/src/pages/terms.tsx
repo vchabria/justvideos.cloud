@@ -1,29 +1,39 @@
-import { Link } from "wouter";
-import { Card } from "@/components/ui/card";
+import CinematicLayout from "@/components/cinematic/CinematicLayout";
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-background" data-testid="page-terms">
-      <div className="mx-auto w-full max-w-4xl px-4 py-10 md:px-6 md:py-14">
-        <Link href="/">
-          <a className="text-sm text-muted-foreground underline-offset-4 hover:underline" data-testid="link-terms-back">
-            Back to site
-          </a>
-        </Link>
-
-        <h1 className="mt-6 font-serif text-3xl font-semibold tracking-tight" data-testid="text-terms-title">
-          Terms of Service
-        </h1>
-        <p className="mt-2 text-muted-foreground" data-testid="text-terms-subtitle">
-          This is a placeholder terms page for the prototype.
-        </p>
-
-        <Card className="mt-6 rounded-2xl border bg-card p-6" data-testid="card-terms">
-          <div className="text-sm text-muted-foreground" data-testid="text-terms-body">
-            Add your terms of service content here.
+    <CinematicLayout>
+      <section className="section" style={{ paddingTop: "clamp(140px, 18vh, 220px)" }}>
+        <div className="shell" style={{ maxWidth: 800 }}>
+          <div className="eyebrow" style={{ marginBottom: 16 }}>
+            {"\u2726"} Legal
           </div>
-        </Card>
-      </div>
-    </div>
+          <h1
+            className="serif"
+            style={{
+              fontSize: "clamp(36px, 5vw, 64px)",
+              letterSpacing: "-0.02em",
+              lineHeight: 1,
+              marginBottom: 32,
+            }}
+          >
+            Terms of Service
+          </h1>
+          <div style={{ color: "var(--fg-dim)", lineHeight: 1.7, fontSize: 15 }}>
+            <p style={{ marginBottom: 24 }}>
+              This is a placeholder terms of service for JustVideos.cloud. The full terms will be
+              published here before launch.
+            </p>
+            <p>
+              For questions, contact{" "}
+              <a href="mailto:hemant@chabria.com" style={{ color: "var(--accent)" }}>
+                hemant@chabria.com
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+    </CinematicLayout>
   );
 }

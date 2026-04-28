@@ -1,21 +1,41 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+import { Link } from "wouter";
+import CinematicLayout from "@/components/cinematic/CinematicLayout";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md mx-4">
-        <CardContent className="pt-6">
-          <div className="flex mb-4 gap-2">
-            <AlertCircle className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
+    <CinematicLayout>
+      <section
+        className="section"
+        style={{
+          paddingTop: "clamp(140px, 18vh, 220px)",
+          minHeight: "60vh",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <div className="shell" style={{ textAlign: "center" }}>
+          <div className="eyebrow" style={{ marginBottom: 16 }}>
+            {"\u2726"} 404
           </div>
-
-          <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
+          <h1
+            className="serif"
+            style={{
+              fontSize: "clamp(48px, 8vw, 128px)",
+              letterSpacing: "-0.025em",
+              lineHeight: 0.95,
+              marginBottom: 24,
+            }}
+          >
+            Page not <em style={{ color: "var(--accent)", fontStyle: "italic" }}>found.</em>
+          </h1>
+          <p style={{ color: "var(--fg-dim)", marginBottom: 32 }}>
+            The page you're looking for doesn't exist or has been moved.
           </p>
-        </CardContent>
-      </Card>
-    </div>
+          <Link href="/" className="btn">
+            Back to home <span className="arrow">{"\u2197"}</span>
+          </Link>
+        </div>
+      </section>
+    </CinematicLayout>
   );
 }
